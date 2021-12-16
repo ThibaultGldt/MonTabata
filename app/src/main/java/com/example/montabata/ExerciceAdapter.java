@@ -23,9 +23,10 @@ public class ExerciceAdapter extends RecyclerView.Adapter<ExerciceAdapter .ViewH
     private DatabaseClient mDb;
     private OnActionListener m_listener;
 
-    public ExerciceAdapter(List<Exercices> exercices, int itemId){
+    public ExerciceAdapter(List<Exercices> exercices, int itemId, OnActionListener listener){
         this.m_exercices = exercices;
         this.m_itemId = itemId;
+        this.m_listener = listener;
     }
 
     @NonNull

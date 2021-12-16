@@ -34,8 +34,9 @@ public class ExerciceActivity extends AppCompatActivity implements ExerciceAdapt
         mDb = DatabaseClient.getInstance(getApplicationContext());
 
         recyclerView = (RecyclerView) findViewById(R.id.listExercices);
-
-        adapter = new ExerciceAdapter(listExercices, R.layout.exercices_view);
+        //On passe la liste d'exercice remplie au chargement de l'activité, la vue xml pour une ligne d'exercice et l'activité
+        //pour ajouté un écouteur d'action sur le bouton modifier de chaque ligne d'exercice
+        adapter = new ExerciceAdapter(listExercices, R.layout.exercices_view, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         getExercices();
@@ -78,7 +79,6 @@ public class ExerciceActivity extends AppCompatActivity implements ExerciceAdapt
     public void startEditActivity(int position) {
         //J'en suis ici
         // TODO: 14/12/2021 tester cette fonction
-        adapter.
         Intent editExerciceIntent = new Intent(ExerciceActivity.this, AddExerciceActivity.class);
         editExerciceIntent.putExtra("exoId", position);
         startActivity(editExerciceIntent);

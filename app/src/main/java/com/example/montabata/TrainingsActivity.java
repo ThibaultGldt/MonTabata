@@ -25,10 +25,6 @@ public class TrainingsActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.listeEntrainements);
 
-        for(int i = 0; i < 20; i++){
-            entrainements.add("entrainement " + i);
-        }
-
         adapter = new TrainingAdapter(entrainements, R.layout.entrainement_view);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

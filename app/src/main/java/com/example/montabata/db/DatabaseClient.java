@@ -50,7 +50,8 @@ public class DatabaseClient {
             super.onCreate(db);
 
             //
-            db.execSQL("INSERT INTO exercice (nom, description, duree, repos) VALUES(\"Tractions\", \"ramener les épaules vers le bas et ramener les coudes en arriere lorsqu'on tire\", 10, 20);");
+            db.execSQL("INSERT INTO training(nom, cycle) VALUES(\"Haut du corps\", 4)");
+            db.execSQL("INSERT INTO exercice (nom, description, duree, repos) VALUES(\"Tractions\", \"test\", 10, 20);");
             db.execSQL("INSERT INTO exercice (nom, description, duree, repos) VALUES(\"Pompes\", \" Faire le mouvement lentement\", 10, 20);");
 
         }
