@@ -13,6 +13,9 @@ public interface TrainingDAO {
     @Query("SELECT * FROM training")
     List<Training> getAll();
 
+    @Query("SELECT * FROM training WHERE m_id = :id")
+    Training getById(int id);
+
     @Insert
     long insert(Training training);
 
