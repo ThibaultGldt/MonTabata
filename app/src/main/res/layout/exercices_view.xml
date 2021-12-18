@@ -5,17 +5,17 @@
     android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/exerciceName"
-                android:layout_width="wrap_content"
+                android:layout_width="30dp"
                 android:layout_height="wrap_content"></TextView>
             <TextView
                 android:id="@+id/exerciceDescription"
-                android:layout_width="wrap_content"
+                android:layout_width="30dp"
                 android:layout_height="wrap_content"></TextView>
             <TextView
                 android:id="@+id/exerciceDuree"
@@ -26,18 +26,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 ></TextView>
-            <ImageButton
-                android:id="@+id/deleteButton"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="@drawable/delete"
-                ></ImageButton>
-            <ImageButton
-                android:id="@+id/editButton"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="@drawable/edit"
-                ></ImageButton>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:id="@+id/deleteButton"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/delete"
+                    ></ImageButton>
+                <ImageButton
+                    android:id="@+id/editButton"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/edit"
+                    ></ImageButton>
+            </LinearLayout>
         </LinearLayout>
 
 </LinearLayout>

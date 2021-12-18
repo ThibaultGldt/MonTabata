@@ -40,7 +40,6 @@ public class DatabaseClient {
         }
     };
 
-
     // Méthode statique
     // Retourne l'instance de l'objet DatabaseClient
     public static synchronized DatabaseClient getInstance(Context context) {

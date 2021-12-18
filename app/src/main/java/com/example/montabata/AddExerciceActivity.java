@@ -62,7 +62,7 @@ public class AddExerciceActivity extends AppCompatActivity {
                 //chargement des données de l'exercice dans la vue
                 inputName.setText(exercice.getNom());
                 inputDesc.setText(exercice.getDescription());
-                inputWork.setText(""+exercice.getDuree());
+                inputWork.setText(Integer.toString(exercice.getDuree()));
                 inputRest.setText(""+exercice.getRepos());
             }
         }
