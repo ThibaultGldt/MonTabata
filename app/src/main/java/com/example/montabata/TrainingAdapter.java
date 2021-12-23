@@ -72,16 +72,16 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter .ViewH
         });*/
 
         //On crée l'évènement qui permet d'accéder à la modification d'un exercice
-       /* viewHolder.editButton.setOnClickListener(new View.OnClickListener() {
+       viewHolder.editButton.setOnClickListener(new View.OnClickListener() {
             private TrainingsActivity trainingsActivity;
 
             @Override
             public void onClick(View v) {
                 // TODO: 13/12/2021 Lancer l'activité AddExerciceActivity en passant l'id de l'exercice dans l'intention pour le modifier
 
-                m_listener.startEditActivity((int) thisTraining.getM_id());
+                m_listener.startEditActivity((int) thisTraining.training.getM_id());
             }
-        });*/
+        });
         viewHolder.itemView.setTag(thisTraining);
     }
 

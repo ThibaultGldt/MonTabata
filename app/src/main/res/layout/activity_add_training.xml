@@ -24,6 +24,57 @@
             android:ems="10"
             android:text="30"
             android:inputType="number"></EditText>
+        <EditText
+            android:id="@+id/inputPrepare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:ems="10"
+            android:text="30"
+            android:inputType="number"></EditText>
+        <EditText
+            android:id="@+id/inputLongRest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:ems="10"
+            android:text="30"
+            android:inputType="number"></EditText>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nom"></TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Durée"></TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Repos"></TextView>
+        </LinearLayout>
+        <ScrollView
+            android:id="@+id/scrollExerciceList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:id="@+id/exerciceList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"></LinearLayout>
+        </ScrollView>
+        <Button
+            android:id="@+id/addExerciceToTraining"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ajouter Exercice"></Button>
+
         <Button
             android:id="@+id/buttonValider"
             android:layout_width="wrap_content"

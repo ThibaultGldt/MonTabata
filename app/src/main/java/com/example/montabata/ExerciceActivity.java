@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.example.montabata.db.DatabaseClient;
 import com.example.montabata.db.Exercices;
+import com.example.montabata.db.TrainingExercice;
+import com.example.montabata.db.TrainingWithExercices;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +25,8 @@ public class ExerciceActivity extends AppCompatActivity implements ExerciceAdapt
     private DatabaseClient mDb;
     private ExerciceAdapter adapter;
     private List<Exercices> listExercices = new ArrayList<Exercices>();
+    private Intent intent;
+    private int training_id;
     //VIEW
     private RecyclerView recyclerView;
 
@@ -32,6 +36,7 @@ public class ExerciceActivity extends AppCompatActivity implements ExerciceAdapt
         setContentView(R.layout.activity_exercice);
 
         mDb = DatabaseClient.getInstance(getApplicationContext());
+        intent = getIntent();
 
         recyclerView = (RecyclerView) findViewById(R.id.listExercices);
         //On passe la liste d'exercice remplie au chargement de l'activité, la vue xml pour une ligne d'exercice et l'activité
@@ -40,6 +45,10 @@ public class ExerciceActivity extends AppCompatActivity implements ExerciceAdapt
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         getExercices();
+
+        if(intent.hasExtra("training_ID")){
+            training_id = intent.getIntExtra("training_ID", 0);
+        }
     }
 
     public void getExercices(){
@@ -82,5 +91,29 @@ public class ExerciceActivity extends AppCompatActivity implements ExerciceAdapt
         Intent editExerciceIntent = new Intent(ExerciceActivity.this, AddExerciceActivity.class);
         editExerciceIntent.putExtra("exoId", position);
         startActivity(editExerciceIntent);
+    }
+
+    @Override
+    public void addExerciceToTraining(int position){
+        class addExerciceToTraining extends AsyncTask<Void, Void, TrainingExercice>{
+
+            @Override
+            protected TrainingExercice doInBackground(Void... voids) {
+                TrainingExercice trainingExercice = new TrainingExercice();
+                trainingExercice.m_id = training_id;
+                trainingExercice.id = position;
+                mDb.getAppDatabase().TrainingWithExercicesDAO().insert(trainingExercice);
+                return trainingExercice;
+            }
+
+            @Override
+            protected void onPostExecute(TrainingExercice trainingExercice) {
+                super.onPostExecute(trainingExercice);
+                setResult(RESULT_OK);
+                finish();
+            }
+        }
+        addExerciceToTraining addExerciceToTraining = new addExerciceToTraining();
+        addExerciceToTraining.execute();
     }
 }

@@ -14,11 +14,6 @@ public class TrainingWithExercices{
             entityColumn = "id",//id de l'exercice
             associateBy = @Junction(TrainingExercice.class)
     )
-    List<Exercices> exercicesList;
+    public List<Exercices> exercicesList;
 }
 
-@Entity(primaryKeys = {"m_id", "id"})
-class TrainingExercice {
-    public int m_id;
-    public int id;
-}

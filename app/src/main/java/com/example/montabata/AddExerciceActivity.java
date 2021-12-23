@@ -17,11 +17,11 @@ public class AddExerciceActivity extends AppCompatActivity {
     private DatabaseClient mDb;
     private Intent intent;
     //VIEW
-    EditText inputName;
-    EditText inputDesc;
-    EditText inputWork;
-    EditText inputRest;
-    Button valider;
+    private EditText inputName;
+    private EditText inputDesc;
+    private EditText inputWork;
+    private EditText inputRest;
+    private Button valider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

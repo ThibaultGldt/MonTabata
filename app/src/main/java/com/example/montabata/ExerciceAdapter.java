@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -83,6 +84,13 @@ public class ExerciceAdapter extends RecyclerView.Adapter<ExerciceAdapter .ViewH
                 m_listener.startEditActivity((int) exo.getId());
             }
         });
+
+        holder.clickLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                m_listener.addExerciceToTraining((int) exo.getId());
+            }
+        });
         holder.itemView.setTag(exo);
     }
 
@@ -117,6 +125,8 @@ public class ExerciceAdapter extends RecyclerView.Adapter<ExerciceAdapter .ViewH
         public TextView exerciceRepos;
         public ImageButton deleteButton;
         public ImageButton editButton;
+        public LinearLayout clickLayout;
+
 
         public ViewHolder(View v) {
             super(v);
@@ -126,11 +136,16 @@ public class ExerciceAdapter extends RecyclerView.Adapter<ExerciceAdapter .ViewH
             exerciceRepos = (TextView) v.findViewById(R.id.exerciceRepos);
             deleteButton =  v.findViewById(R.id.deleteButton);
             editButton = v.findViewById(R.id.editButton);
+            clickLayout = v.findViewById(R.id.clickableLayout);
+
         }
+
+
     }
 
     interface OnActionListener{
         //on définit une interface qui sera implémentée
         public void startEditActivity(int position);
+        public void addExerciceToTraining(int position);
     }
 }
