@@ -72,7 +72,6 @@ public class AddTrainingActivity extends AppCompatActivity {
                 Training training = new Training();
                 training.setM_nom(name);
                 training.setM_cycle(cycle);
-                //bug ici
                 long id = mDb.getAppDatabase().TrainingDAO().insert(training);
                 training.setM_id((int) id);
                 return training;

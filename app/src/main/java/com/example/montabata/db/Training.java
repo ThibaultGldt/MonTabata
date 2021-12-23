@@ -9,6 +9,9 @@ public class Training {
     private int m_id;
     private String m_nom;
     private int m_cycle;
+    private int m_prepare;
+    private int m_longRest;
+
 
     public int getM_id() {
         return m_id;
@@ -32,5 +35,21 @@ public class Training {
 
     public void setM_cycle(int m_cycle) {
         this.m_cycle = m_cycle;
+    }
+
+    public int getM_prepare() {
+        return m_prepare;
+    }
+
+    public void setM_prepare(int m_prepare) {
+        this.m_prepare = m_prepare;
+    }
+
+    public int getM_longRest() {
+        return m_longRest;
+    }
+
+    public void setM_longRest(int m_longRest) {
+        this.m_longRest = m_longRest;
     }
 }

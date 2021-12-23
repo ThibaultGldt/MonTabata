@@ -6,7 +6,7 @@ import androidx.room.RoomDatabase;
 
 import kotlin.reflect.KFunction;
 
-@Database(entities = {Exercices.class, Training.class}, version = 2)
+@Database(entities = {Exercices.class, Training.class, TrainingExercice.class}, version = 3)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract ExerciceDAO ExerciceDAO();

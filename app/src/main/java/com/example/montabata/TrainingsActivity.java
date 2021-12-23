@@ -22,7 +22,7 @@ public class TrainingsActivity extends AppCompatActivity implements TrainingAdap
     //DATA
     private TrainingAdapter adapter;
     private DatabaseClient mDb;
-    List<Training> entrainements = new ArrayList<Training>();
+    List<TrainingWithExercices> entrainements = new ArrayList<TrainingWithExercices>();
 
     //VIEW
 
@@ -42,10 +42,10 @@ public class TrainingsActivity extends AppCompatActivity implements TrainingAdap
     }
 
     public void getTrainings(){
-        class GetTrainings extends AsyncTask<Void, Void, List<Training>> {
+        class GetTrainings extends AsyncTask<Void, Void, List<TrainingWithExercices>> {
 
             @Override
-            protected List<Training> doInBackground(Void... voids) {
+            protected List<TrainingWithExercices> doInBackground(Void... voids) {
                 //List<Training> trainingList = mDb.getAppDatabase().TrainingDAO().getAll();
                 //return trainingList;
 
@@ -54,7 +54,7 @@ public class TrainingsActivity extends AppCompatActivity implements TrainingAdap
             }
 
             @Override
-            protected void onPostExecute(List<Training> trainingList) {
+            protected void onPostExecute(List<TrainingWithExercices> trainingList) {
                 super.onPostExecute(trainingList);
                 adapter.clear();
                 adapter.addAll(trainingList);

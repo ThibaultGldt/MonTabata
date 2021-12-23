@@ -10,15 +10,15 @@ import java.util.List;
 public class TrainingWithExercices{
     @Embedded public Training training;
     @Relation(
-            parentColumn = "training_ID",
-            entityColumn = "exercice_ID",
-            associateBy = @Junction(TrainingExerciceCrossRef.class)
+            parentColumn = "m_id",//id de l'entrainement
+            entityColumn = "id",//id de l'exercice
+            associateBy = @Junction(TrainingExercice.class)
     )
-    public List<Exercices> exercicesList;
+    List<Exercices> exercicesList;
 }
 
-@Entity(primaryKeys = {"training_ID", "exercice_ID"})
-class TrainingExerciceCrossRef {
-    public int training_ID;
-    public int exercice_ID;
+@Entity(primaryKeys = {"m_id", "id"})
+class TrainingExercice {
+    public int m_id;
+    public int id;
 }

@@ -14,19 +14,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.montabata.db.DatabaseClient;
 import com.example.montabata.db.Exercices;
 import com.example.montabata.db.Training;
+import com.example.montabata.db.TrainingWithExercices;
 
 import java.util.List;
 
 public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter .ViewHolder> {
 
     //DATA
-    private List<Training> m_trainings;
+    private List<TrainingWithExercices> m_trainings;
     private int itemId;
 
     private DatabaseClient mDb;
     private TrainingAdapter.OnActionListener m_listener;
 
-    public TrainingAdapter(List<Training> m_trainings, int itemId, OnActionListener listener){
+    public TrainingAdapter(List<TrainingWithExercices> m_trainings, int itemId, OnActionListener listener){
         this.m_trainings = m_trainings;
         this.itemId = itemId;
         this.m_listener = listener;
@@ -41,19 +42,19 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter .ViewH
 
     @Override
     public void onBindViewHolder(@NonNull TrainingAdapter.ViewHolder viewHolder, int i) {
-        Training thisTraining = m_trainings.get(i);
-        viewHolder.trainingName.setText(thisTraining.getM_nom());
+        TrainingWithExercices thisTraining = m_trainings.get(i);
+        viewHolder.trainingName.setText(thisTraining.training.getM_nom());
         viewHolder.itemView.setTag(thisTraining);
 
-        viewHolder.deleteButton.setOnClickListener(new View.OnClickListener(){
+        /*viewHolder.deleteButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                class DeleteTraining extends AsyncTask<Void, Void, Training> {
+                class DeleteTraining extends AsyncTask<Void, Void, TrainingWithExercices> {
 
                     @Override
-                    protected Training doInBackground(Void... voids) {
+                    protected TrainingWithExercices doInBackground(Void... voids) {
                         //on supprime l'exercice dans la bdd
-                        mDb.getAppDatabase().TrainingDAO().delete(thisTraining);
+                        mDb.getAppDatabase().TrainingWithExercicesDAO().delete(thisTraining);
                         return thisTraining;
                     }
 
@@ -68,10 +69,10 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter .ViewH
                 DeleteTraining dT = new DeleteTraining();
                 dT.execute();
             }
-        });
+        });*/
 
         //On crée l'évènement qui permet d'accéder à la modification d'un exercice
-        viewHolder.editButton.setOnClickListener(new View.OnClickListener() {
+       /* viewHolder.editButton.setOnClickListener(new View.OnClickListener() {
             private TrainingsActivity trainingsActivity;
 
             @Override
@@ -80,7 +81,7 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter .ViewH
 
                 m_listener.startEditActivity((int) thisTraining.getM_id());
             }
-        });
+        });*/
         viewHolder.itemView.setTag(thisTraining);
     }
 
@@ -90,8 +91,8 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter .ViewH
         notifyDataSetChanged();
     }
 
-    public void addAll(List<Training> trainingList) {
-        for (Training training:
+    public void addAll(List<TrainingWithExercices> trainingList) {
+        for (TrainingWithExercices training:
                 trainingList) {
             m_trainings.add(training);
         }

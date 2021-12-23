@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MonTabata">
         <activity
+            android:name=".TrainingDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddTrainingActivity"
             android:exported="false" />
         <activity
