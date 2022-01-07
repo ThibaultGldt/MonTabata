@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.montabata.db.DatabaseClient;
 import com.example.montabata.db.Exercices;
 import com.example.montabata.db.Training;
+import com.example.montabata.db.TrainingExercice;
 import com.example.montabata.db.TrainingWithExercices;
 
 public class AddTrainingActivity extends AppCompatActivity {
@@ -26,7 +27,7 @@ public class AddTrainingActivity extends AppCompatActivity {
     EditText inputLongRest;
     Button addExerciceToTraining;
     Button valider;
-    Integer training_id;
+    private Integer training_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +93,13 @@ public class AddTrainingActivity extends AppCompatActivity {
             TextView exerciceName = exerciceLine.findViewById(R.id.exerciceName);
             TextView exerciceDuree = exerciceLine.findViewById(R.id.exerciceDuree);
             TextView exerciceRepos = exerciceLine.findViewById(R.id.exerciceRepos);
+            //Button deleteExercice = exerciceLine.findViewById(R.id.deleteButton);
+            /*deleteExercice.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    removeExerciceFromTraining(exercice.getId());
+                }
+            });*/
 
             exerciceName.setText(exercice.getNom());
             exerciceDuree.setText("" + exercice.getDuree());
@@ -163,4 +171,14 @@ public class AddTrainingActivity extends AppCompatActivity {
         selectExerciceIntent.putExtra("training_ID", training_id);
         startActivity(selectExerciceIntent);
     }
+
+    /*public void removeExerciceFromTraining(long exerciceID){
+        class removeExerciceFromTraining extends AsyncTask<Void, Void, TrainingExercice>{
+
+            @Override
+            protected TrainingExercice doInBackground(Void... voids) {
+                mDb.getAppDatabase().TrainingWithExercicesDAO().delete();
+            }
+        }
+    }*/
 }

@@ -18,6 +18,7 @@ import com.example.montabata.db.TrainingExercice;
 import com.example.montabata.db.TrainingWithExercices;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class ExerciceActivity extends AppCompatActivity implements ExerciceAdapter.OnActionListener{
@@ -47,7 +48,7 @@ public class ExerciceActivity extends AppCompatActivity implements ExerciceAdapt
         getExercices();
 
         if(intent.hasExtra("training_ID")){
-            training_id = intent.getIntExtra("training_ID", 0);
+            training_id = intent.getIntExtra("training_ID", -1);
         }
     }
 
@@ -58,6 +59,27 @@ public class ExerciceActivity extends AppCompatActivity implements ExerciceAdapt
             protected List<Exercices> doInBackground(Void... voids) {
                 List<Exercices> listExercices = mDb.getAppDatabase()
                         .ExerciceDAO().getAll();
+                List<TrainingExercice> trainingExercices = mDb.getAppDatabase().TrainingWithExercicesDAO().getTrainingExercice(training_id);
+                List<Exercices> listExoToRemove = new ArrayList<Exercices>();
+
+                for (Iterator<Exercices> iterator = listExercices.iterator(); iterator.hasNext();){
+                    Exercices exo = iterator.next();
+                    for (TrainingExercice trainingExercice :
+                            trainingExercices) {
+                        if (exo.getId() == trainingExercice.id) {
+                            //On stock les exercices présent dans l'entrainement dans une liste tampon
+                            listExoToRemove.add(exo);
+                        }
+                    }
+                }
+                for (Exercices exo :
+                        listExoToRemove) {
+                    //on enlève les exercices stockés de la liste à renvoyé
+                    //lorsque l'on veut ajouter un exercice à notre entrainement
+                    //on ne voit que les exercices n'étant pas déjà dans l'entrainement
+                    listExercices.remove(exo);
+                }
+
                 return listExercices;
             }
 

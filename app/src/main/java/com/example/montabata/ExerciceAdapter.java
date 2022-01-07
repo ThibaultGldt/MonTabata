@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -52,11 +54,14 @@ public class ExerciceAdapter extends RecyclerView.Adapter<ExerciceAdapter .ViewH
             @Override
             public void onClick(View v) {
                 class DeleteExercice extends AsyncTask<Void, Void, Exercices> {
-
+                    Boolean isDeletable = false;
                     @Override
                     protected Exercices doInBackground(Void... voids) {
                         //on supprime l'exercice dans la bdd
-                        mDb.getAppDatabase().ExerciceDAO().delete(exo);
+                        if (mDb.getAppDatabase().TrainingWithExercicesDAO().getExerciceInTrainings((int) exo.getId()) == null){
+                            mDb.getAppDatabase().ExerciceDAO().delete(exo);
+                            isDeletable = true;
+                        }
                         return exo;
                     }
 
@@ -64,8 +69,13 @@ public class ExerciceAdapter extends RecyclerView.Adapter<ExerciceAdapter .ViewH
                     protected void onPostExecute(Exercices exercices) {
                         super.onPostExecute(exercices);
                         //on supprime l'exercice du recyclerview
-                        m_exercices.remove(exercices);
-                        notifyDataSetChanged();
+                        if (isDeletable) {
+                            m_exercices.remove(exercices);
+                            notifyDataSetChanged();
+                        }
+                        if (!isDeletable){
+                            Toast.makeText(v.getContext(),"Exercice présent dans au moins 1 entrainement, impossible de le supprimer", Toast.LENGTH_LONG).show();
+                        }
                     }
                 }
                 DeleteExercice de = new DeleteExercice();

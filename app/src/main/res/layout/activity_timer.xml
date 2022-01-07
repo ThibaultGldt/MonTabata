@@ -1,29 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TimerActivity">
-    <LinearLayout
+    android:orientation="vertical"
+    tools:context=".TimerActivity"
+    android:id="@+id/timerView">
+
+    <TextView
+        android:id="@+id/exerciceName"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textSize="70dp"></TextView>
+
     <TextView
         android:id="@+id/showTimer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></TextView>
-    <Button
-        android:id="@+id/startButton"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="StartTimer"
-        android:text="Start Timer"></Button>
-    <Button
-        android:id="@+id/cancelButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="CancelTimer"
-        android:text="Cancel Timer"></Button>
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:gravity="center"
+        android:textSize="100dp"
+        android:layout_weight="1"></TextView>
+
+</LinearLayout>

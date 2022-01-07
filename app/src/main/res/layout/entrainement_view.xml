@@ -9,20 +9,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </TextView>
+    <ImageButton
+        android:id="@+id/playButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/play"></ImageButton>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <ImageButton
             android:id="@+id/deleteButton"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:background="@drawable/delete"
             ></ImageButton>
         <ImageButton
             android:id="@+id/editButton"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:background="@drawable/edit"
             ></ImageButton>
     </LinearLayout>

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.montabata.db.DatabaseClient;
 import com.example.montabata.db.Exercices;
 import com.example.montabata.db.Training;
+import com.example.montabata.db.TrainingExercice;
 import com.example.montabata.db.TrainingWithExercices;
 
 import java.util.List;
@@ -46,7 +47,7 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter .ViewH
         viewHolder.trainingName.setText(thisTraining.training.getM_nom());
         viewHolder.itemView.setTag(thisTraining);
 
-        /*viewHolder.deleteButton.setOnClickListener(new View.OnClickListener(){
+        viewHolder.deleteButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 class DeleteTraining extends AsyncTask<Void, Void, TrainingWithExercices> {
@@ -54,12 +55,18 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter .ViewH
                     @Override
                     protected TrainingWithExercices doInBackground(Void... voids) {
                         //on supprime l'exercice dans la bdd
-                        mDb.getAppDatabase().TrainingWithExercicesDAO().delete(thisTraining);
+                       List<TrainingExercice> trainingWithExercices = mDb.getAppDatabase().TrainingWithExercicesDAO().getTrainingExercice(thisTraining.training.getM_id());
+
+                        for (TrainingExercice trainingExercice:
+                             trainingWithExercices) {
+                            mDb.getAppDatabase().TrainingWithExercicesDAO().delete(trainingExercice);
+                        }
+                        mDb.getAppDatabase().TrainingDAO().delete(thisTraining.training);
                         return thisTraining;
                     }
 
                     @Override
-                    protected void onPostExecute(Training training) {
+                    protected void onPostExecute(TrainingWithExercices training) {
                         super.onPostExecute(training);
                         //on supprime l'exercice du recyclerview
                         m_trainings.remove(training);
@@ -69,19 +76,24 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter .ViewH
                 DeleteTraining dT = new DeleteTraining();
                 dT.execute();
             }
-        });*/
+        });
 
         //On crée l'évènement qui permet d'accéder à la modification d'un exercice
        viewHolder.editButton.setOnClickListener(new View.OnClickListener() {
-            private TrainingsActivity trainingsActivity;
-
             @Override
             public void onClick(View v) {
                 // TODO: 13/12/2021 Lancer l'activité AddExerciceActivity en passant l'id de l'exercice dans l'intention pour le modifier
 
                 m_listener.startEditActivity((int) thisTraining.training.getM_id());
             }
-        });
+       });
+
+       viewHolder.playButton.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               m_listener.GoToPlayTraining(thisTraining.training.getM_id());
+           }
+       });
         viewHolder.itemView.setTag(thisTraining);
     }
 
@@ -107,6 +119,8 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter .ViewH
         public TextView trainingName;
         public ImageButton deleteButton;
         public ImageButton editButton;
+        public ImageButton playButton;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             // TODO: 16/12/2021 Gerer ajout/modification/suppression entrainement
@@ -114,11 +128,13 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter .ViewH
             trainingName = (TextView) itemView.findViewById(R.id.training);
             deleteButton = itemView.findViewById(R.id.deleteButton);
             editButton = itemView.findViewById(R.id.editButton);
+            playButton = itemView.findViewById(R.id.playButton);
         }
     }
 
     interface OnActionListener{
         //on définit une interface qui sera implémentée
         public void startEditActivity(int position);
+        public void GoToPlayTraining(int position);
     }
 }

@@ -7,14 +7,15 @@
         <entry key="../../Android/Sdk/platforms/android-31/data/res/layout/simple_list_item_1.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_add_exercice.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_add_training.xml" value="0.26875" />
-        <entry key="app/src/main/res/layout/activity_exercice.xml" value="0.10112359550561797" />
+        <entry key="app/src/main/res/layout/activity_exercice.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_timer.xml" value="0.13069908814589665" />
         <entry key="app/src/main/res/layout/activity_training_details.xml" value="0.2682291666666667" />
-        <entry key="app/src/main/res/layout/activity_trainings.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/entrainement_view.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_trainings.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/entrainement_view.xml" value="0.25" />
         <entry key="app/src/main/res/layout/exercice_line.xml" value="0.12447916666666667" />
         <entry key="app/src/main/res/layout/exercices_view.xml" value="0.2948717948717949" />
+        <entry key="app/src/main/res/layout/popup_delete_error.xml" value="0.26875" />
       </map>
     </option>
   </component>

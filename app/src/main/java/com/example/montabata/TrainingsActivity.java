@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import android.view.View;
+import android.widget.ImageButton;
 
 import com.example.montabata.db.DatabaseClient;
 import com.example.montabata.db.Exercices;
@@ -25,6 +26,7 @@ public class TrainingsActivity extends AppCompatActivity implements TrainingAdap
     List<TrainingWithExercices> entrainements = new ArrayList<TrainingWithExercices>();
 
     //VIEW
+    private ImageButton playButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,13 @@ public class TrainingsActivity extends AppCompatActivity implements TrainingAdap
     public void GoToAddTraining(View view) {
         Intent addTrainingIntent = new Intent(TrainingsActivity.this, AddTrainingActivity.class);
         startActivity(addTrainingIntent);
+    }
+
+    @Override
+    public void GoToPlayTraining(int position){
+        Intent playTrainingIntent = new Intent(TrainingsActivity.this, TimerActivity.class);
+        playTrainingIntent.putExtra("trainingId", position);
+        startActivity(playTrainingIntent);
     }
 
     @Override
